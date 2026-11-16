@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.16)
+project(yxcalendar_calc LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_library(date_calc date_calc.cpp lunar.cpp)
+target_include_directories(date_calc PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+if (MINGW)
+  target_compile_options(date_calc PRIVATE -finput-charset=UTF-8)
+endif()
+
+add_executable(calendar_test calendar_test.cpp china_cities.cpp)
+target_link_libraries(calendar_test PRIVATE date_calc)
+if (MINGW)
+  target_compile_options(calendar_test PRIVATE -finput-charset=UTF-8)
+endif()
+
+add_executable(calendar_calc WIN32 calendar_app.cpp weather.cpp weather_panel.cpp weather_icons.cpp china_cities.cpp settings.cpp voice.cpp theme.cpp almanac.cpp history.cpp extra.cpp calendar.rc)
+target_link_libraries(calendar_calc PRIVATE date_calc gdiplus dwmapi wininet comdlg32 winmm shell32 ole32 mfplat mfreadwrite mfuuid z)
+if (MINGW)
+  target_link_options(calendar_calc PRIVATE -municode)
+  target_compile_options(calendar_calc PRIVATE -finput-charset=UTF-8)
+  set_source_files_properties(calendar.rc PROPERTIES COMPILE_FLAGS "--codepage=65001")
+endif()

@@ -1,0 +1,33 @@
+#pragma code_page(65001)
+#include "version.hpp"
+
+1 ICON "app.ico"
+1 24 "app.manifest"
+
+1 VERSIONINFO
+FILEVERSION CALENDAR_VERSION_MAJOR,CALENDAR_VERSION_CONTENT,CALENDAR_VERSION_FIX,0
+PRODUCTVERSION CALENDAR_VERSION_MAJOR,CALENDAR_VERSION_CONTENT,CALENDAR_VERSION_FIX,0
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS 0x40004L
+FILETYPE 0x1L
+FILESUBTYPE 0x0L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "080404b0"
+    BEGIN
+      VALUE "FileDescription", "蕊历"
+      VALUE "FileVersion", CALENDAR_VERSION_STRING
+      VALUE "InternalName", "calendar_calc"
+      VALUE "LegalCopyright", "版权所有 © 2026"
+      VALUE "OriginalFilename", "calendar_calc.exe"
+      VALUE "ProductName", "蕊历"
+      VALUE "ProductVersion", CALENDAR_VERSION_STRING
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x804, 1200
+  END
+END
